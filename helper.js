@@ -67,8 +67,8 @@ async function checkIfTextChannelIsAvNumbers (message) {
     const searchForGuild = await getMoveerAdminChannelFromDB(message, message.guild.id)
 	console.log('throwing')
 	throw {
-		logMessage: 'Command made outside moveeradmin',
-		sendMessage: moveerMessage.CMOVE_OUTSIDE_MOVEERADMIN + ' <@' + message.author.id + '>'
+		logMessage: 'Command made outside av-number channel',
+		sendMessage: moveerMessage.AVMOVE_OUTISDE_AVCHANNEL + ' <@' + message.author.id + '>'
 	}
   }
 }
@@ -383,7 +383,7 @@ function reportMoveerError (type, message) {
   }
 }
 
-function makeChannel(message, number){
+function makeChannel(number){
 	message.guild.createChannel(String(number), "voice")
 }
 

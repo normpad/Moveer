@@ -17,6 +17,7 @@ const rmove = require('./commands/rmove.js')
 const tmove = require('./commands/tmove.js')
 const ymove = require('./commands/ymove.js')
 const avmove = require('./commands/avmove.js')
+const wsgmove = require('./commands/wsgmove.js')
 const moveerMessage = require('./moveerMessage.js')
 const change = require('./commands/changeMoveerAdmin.js')
 const helper = require('./helper.js')
@@ -75,6 +76,7 @@ client.on('message', message => {
   const command = args.shift().toLowerCase()
 
   if(command === 'av' ) avmove.move(args, message)
+  if(command === 'wsg') wsgmove.move(args, message)
   
   /*
   if (command === 'changema') change.moveerAdmin(args, message)

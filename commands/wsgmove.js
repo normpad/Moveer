@@ -12,7 +12,7 @@ async function move (args, message) {
 	
 	if(parseInt(toVoiceChannelName) <= 500) 
 	{
-		toVoiceChannelName = "AV " + toVoiceChannelName
+		toVoiceChannelName = "WSG " + toVoiceChannelName
 		toVoiceChannel = helper.getChannelByName(message, toVoiceChannelName)
 	
 		helper.checkIfVoiceChannelExist(message, toVoiceChannel, toVoiceChannelName)
