@@ -16,8 +16,10 @@ const fmove = require('./commands/fmove.js')
 const rmove = require('./commands/rmove.js')
 const tmove = require('./commands/tmove.js')
 const ymove = require('./commands/ymove.js')
+const avmove = require('./commands/avmove.js')
 const moveerMessage = require('./moveerMessage.js')
 const change = require('./commands/changeMoveerAdmin.js')
+const helper = require('./helper.js')
 
 if (config.discordBotListToken !== 'x') {
   // Only run if bot is public at discordbotlist.com
@@ -72,6 +74,9 @@ client.on('message', message => {
   const args = message.content.slice(config.discordPrefix.length).trim().split(/ +/g)
   const command = args.shift().toLowerCase()
 
+  if(command === 'av' ) avmove.move(args, message)
+  
+  /*
   if (command === 'changema') change.moveerAdmin(args, message)
   if (command === 'move') move.move(args, message)
   if (command === 'gmove') gmove.move(args, message)
@@ -103,6 +108,7 @@ client.on('message', message => {
       moveerMessage.sendMessage(message, gotEmbedPerms ? moveerMessage.HELP_CHANGEMA : moveerMessage.FALLBACK_HELP_CHANGEMA)
     }
   }
+  */
 })
 
 client.login(token)

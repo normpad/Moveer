@@ -62,6 +62,17 @@ async function checkIfTextChannelIsMoveerAdmin (message) {
   }
 }
 
+async function checkIfTextChannelIsAvNumbers (message) {
+  if (message.channel.name.toLowerCase() !== 'av-numbers') {
+    const searchForGuild = await getMoveerAdminChannelFromDB(message, message.guild.id)
+	console.log('throwing')
+	throw {
+		logMessage: 'Command made outside moveeradmin',
+		sendMessage: moveerMessage.CMOVE_OUTSIDE_MOVEERADMIN + ' <@' + message.author.id + '>'
+	}
+  }
+}
+
 function checkForUserMentions (message, messageMentions) {
   if (messageMentions.length < 1) {
     throw {
@@ -284,14 +295,14 @@ async function moveUsers (message, usersToMove, toVoiceChannelId) {
         } else {
           console.log(err)
           moveerMessage.logger(message, 'Got above error when moving people...')
-          moveerMessage.sendMessage(message, 'Got an error moving people :( If this keeps happening, please contact a moderator in the official discord: https://discord.gg/dTdH3gD')
+          //moveerMessage.sendMessage(message, 'Got an error moving people :( If this keeps happening, please contact a moderator in the official discord: https://discord.gg/dTdH3gD')
           if (message.guild.id !== '569905989604868138') reportMoveerError('MOVE', err.message)
         }
       })
     usersMoved++
   }
   moveerMessage.logger(message, 'Moved ' + usersMoved + (usersMoved === 1 ? ' user' : ' users'))
-  moveerMessage.sendMessage(message, 'Moved ' + usersMoved + (usersMoved === 1 ? ' user' : ' users') + ' by request of <@' + message.author.id + '>')
+  //moveerMessage.sendMessage(message, 'Moved ' + usersMoved + (usersMoved === 1 ? ' user' : ' users') + ' by request of <@' + message.author.id + '>')
   if (message.guild.id === '569905989604868138') return
   if (config.postgreSQLConnection !== 'x') successfullmove(usersMoved)
 }
@@ -372,6 +383,10 @@ function reportMoveerError (type, message) {
   }
 }
 
+function makeChannel(message, number){
+	message.guild.createChannel(String(number), "voice")
+}
+
 module.exports = {
   checkIfTextChannelIsMoveerAdmin,
   checkIfVoiceChannelExist,
@@ -401,5 +416,7 @@ module.exports = {
   checkUserAmountInChannel,
   checkIfCatergyHasRoomsAvailable,
   checkIfChannelTextExpectText,
-  getMoveerAdminChannelFromDB
+  getMoveerAdminChannelFromDB,
+  checkIfTextChannelIsAvNumbers,
+  makeChannel
 }

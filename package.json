@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "dblapi.js": "^2.3.0",
+    "discord": "^0.8.2",
     "discord.js": "^11.5.1",
     "pg": "^7.12.1",
     "simple-node-logger": "^18.12.23"
