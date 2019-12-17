@@ -23,7 +23,7 @@ async function move (args, message) {
 		// No errors in the message, lets get moving!
 		if (userIdsToMove.length > 0) helper.moveUsers(message, userIdsToMove, toVoiceChannel.id)
 	}
-	else if(toVoiceChannelName == "queue" || toVoiceChannelName = "q")
+	else if(toVoiceChannelName == "queue" || toVoiceChannelName == "q")
 	{
 		let toVoiceChannelName = "Waiting to Queue"
 	
