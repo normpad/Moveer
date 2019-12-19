@@ -8,7 +8,7 @@ async function move (args, message) {
   try {
 	await helper.checkIfTextChannelIsAvNumbers(message)
 	helper.checkArgsLength(args, 1)	  
-	let toVoiceChannelName = args[0]
+	let toVoiceChannelName = args[0].toLowerCase()
 	
 	if(parseInt(toVoiceChannelName) <= 500) 
 	{
